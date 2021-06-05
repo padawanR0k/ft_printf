@@ -1,0 +1,24 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "gcc build active file",
+            "command": "/usr/bin/gcc",
+            "args": [
+                "-Wall -Wextra -Werror",
+                "-g",
+                "${fileDirname}/main.c",
+                "${fileDirname}/libftprintf.a",
+                "${fileDirname}/util_print.c",
+                "${fileDirname}/util_option.c",
+                "${fileDirname}/ft_printf.h",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "/usr/bin"
+            }
+        }
+    ],
+    "version": "2.0.0"
+}

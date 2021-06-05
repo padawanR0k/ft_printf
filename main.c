@@ -5,8 +5,41 @@ int main()
 	// printf("[%c]\n", 'a');
 	// ft_printf("[%c]\n", 'a');
 
-	printf("[%s]\n", "abc");
-	ft_printf("[%s]\n", "abc");
+	// u 구현
+	// unsigned int a = 4294967295;
+	// printf("[%10u]\n", a);
+	// ft_printf("[%10u]\n", a);
+
+	// x 구현
+	// printf("[%10x]\n", 123);
+	// ft_printf("[%10x]\n", 123);
+
+	// X 구현
+	// printf("[%3X]\n", 123);
+	// ft_printf("[%3X]\n", 123);
+
+	// p 구현
+	char *a = "Asd";
+	printf("[%30p]\n", a);
+	ft_printf("[%30p]\n", a);
+
+	// 너비 구현
+	// printf("[%0d]\n", 123);
+	// ft_printf("[%0d]\n", 123);
+
+	// printf("[%.10d]\n", 123456789);
+	// ft_printf("[%.1d]\n", 123456789);
+
+	// char *a = "abc";
+	// printf("[%p]\n", a);
+	// ft_printf("[%p]\n", a);
+
+	// printf("[%d]\n", 2147483647);
+	// ft_printf("[%d]\n", 2147483648);
+
+	// unsigned int a = 214748364800;
+	// printf("[%u]\n", a);
+	// ft_printf("[%u]\n", a);
 
 	// printf("[%10.2d]\n", 42);
 	// printf("[%10.3d]\n", 42);

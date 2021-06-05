@@ -1,7 +1,31 @@
 {
 	"files.associations": {
 		"*.tsx": "typescriptreact",
-		"ft_printf.h": "c"
+		"ft_printf.h": "c",
+		"__functional_base": "cpp",
+		"__functional_base_03": "cpp",
+		"__hash_table": "cpp",
+		"__tuple": "cpp",
+		"algorithm": "cpp",
+		"array": "cpp",
+		"chrono": "cpp",
+		"type_traits": "cpp",
+		"functional": "cpp",
+		"iterator": "cpp",
+		"limits": "cpp",
+		"memory": "cpp",
+		"ratio": "cpp",
+		"tuple": "cpp",
+		"utility": "cpp",
+		"__bit_reference": "c",
+		"__node_handle": "c",
+		"atomic": "c",
+		"bitset": "c",
+		"__memory": "c",
+		"locale": "c",
+		"optional": "c",
+		"system_error": "c",
+		"vector": "c"
 	},
 	"C_Cpp.errorSquiggles": "Disabled"
 }
