@@ -6,7 +6,7 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 15:18:36 by yurlee            #+#    #+#             */
-/*   Updated: 2021/06/05 17:39:09 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/06/12 17:47:14 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ int is_option(char c)
 	valid = ft_strchr(options, c) != 0 || ft_isdigit(c);
 	return (valid);
 }
+// TODO: 왼쪽정렬 - DONE
+// TODO: 너비 - DONE
+// TODO: 0으로 채우기 - DONE
+// TODO: 정밀도
+// TODO: * 변수로 받기
 
 int check_flag_option(const char **str, t_word_flags *flags)
 {
@@ -29,8 +34,13 @@ int check_flag_option(const char **str, t_word_flags *flags)
 		{
 			if (flags->left_align == OFF)
 				flags->left_align = ON;
-			// else
-			// 	error
+			(*str)++;
+		}
+		else if (**str == '0')
+		{
+			if (flags->left_align == OFF && flags->precision == OFF)
+				flags->fill_zero = ON;
+			(*str)++;
 		}
 		else if (ft_isdigit(**str))
 		{
@@ -53,11 +63,15 @@ int check_flag_option(const char **str, t_word_flags *flags)
 		else if (**str == '.')
 		{
 			if (flags->precision == OFF)
+			{
 				flags->precision = ON;
-			// else
-			// {
-			// 	error
-			// }
+				(*str)++;
+				while (ft_isdigit(**str))
+				{
+					flags->width_p = (flags->width_p * 10) + (**str - '0');
+					(*str)++;
+				}
+			}
 		}
 	}
 	return (0);

@@ -19,9 +19,49 @@ int main()
 	// ft_printf("[%3X]\n", 123);
 
 	// p 구현
-	char *a = "Asd";
-	printf("[%30p]\n", a);
-	ft_printf("[%30p]\n", a);
+	// char *a = "Asd";
+	// printf("[%30p]\n", a);
+	// ft_printf("[%30p]\n", a);
+
+	// s 구현 && 왼쪽 정렬 && 너비
+	// char *a = NULL;
+	// int n1 = printf("[%-30s]\n", a);
+	// printf("n1: %d \n", n1);
+	// int n2 = ft_printf("[%-30s]\n", a);
+	// printf("n2: %d \n", n2);
+
+	// s 구현  0으로 채우기
+	// int a = 1;
+	// int n1 = printf("[%010d]\n", a);
+	// printf("n1: %d \n", n1);
+	// int n2 = ft_printf("[%010d]\n", a);
+	// printf("n2: %d \n", n2);
+
+	// s 구현  정밀도와 너비, 왼쪽정렬 겹치는 경우
+	// int a = 1;
+	// int n1 = printf("[%-7.5d]\n", a);
+	// printf("n1: %d \n", n1);
+	// int n2 = ft_printf("[%-7.5d]\n", a);
+	// printf("n2: %d \n", n2);
+
+	// // s 구현  정밀도 구현
+	// int a = 1;
+	// int n1 = printf("[%.10d]\n", a);
+	// printf("n1: %d \n", n1);
+	// int n2 = ft_printf("[%.10d]\n", a);
+	// printf("n2: %d \n", n2);
+
+	// zero 플래그 구현
+	// int a = 1;
+	// int n1 = printf("[%05d]\n", a);
+	// printf("n1: %d \n", n1);
+	// int n2 = ft_printf("[%05d]\n", a);
+	// printf("n2: %d \n", n2);
+
+	// c 구현
+	char a = 'A';
+	printf("[%30c]\n", a);
+	ft_printf("[%30c]\n", a);
 
 	// 너비 구현
 	// printf("[%0d]\n", 123);

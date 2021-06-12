@@ -6,7 +6,7 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 13:32:42 by yurlee            #+#    #+#             */
-/*   Updated: 2021/06/05 18:11:18 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/06/12 17:42:55 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,14 @@
 # define HEXA_BASE_L "0123456789abcdef"
 # define HEXA_BASE_U "0123456789ABCDEF"
 # define DECIMAL_BASE "0123456789"
+# define NULL_STR "(null)"
 
 typedef struct	s_word_flags
 {
 	char		type;
 	int			width;
+	int			width_p;
+	short		fill_zero;
 	short		specifier;
 	short		left_align;
 	short		blank;
@@ -47,6 +50,13 @@ int				ft_putnbr_base(long long n, const char *base);
 int				check_flag_option(const char **str, t_word_flags *flags);
 int				ft_putnbr_len(long long n, const char *base);
 int				process_id(va_list va_ptr, t_word_flags *flags);
-int				process_xX(va_list va_ptr, t_word_flags *flags, const char *base);
-int				process_u(va_list va_ptr, t_word_flags *flags, const char *base);
+int				process_xp(va_list va_ptr,
+					t_word_flags *flags, const char *base);
+int				process_u(va_list va_ptr,
+					t_word_flags *flags, const char *base);
+int				process_s(va_list va_ptr, t_word_flags *flags);
+int				process_c(va_list va_ptr, t_word_flags *flags);
+int				print_padding(t_word_flags *flags, int len);
+int				print_zero(t_word_flags *flags, int len);
+int				print_blank(t_word_flags *flags, int len);
 #endif
