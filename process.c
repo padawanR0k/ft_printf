@@ -6,65 +6,55 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 17:17:48 by yurlee            #+#    #+#             */
-/*   Updated: 2021/06/12 17:57:26 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/21 18:34:33 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int process_id(va_list va_ptr, t_word_flags *flags)
+int	process_id(va_list va_ptr, t_word_flags *flags)
 {
-	int value;
-	int len;
-	int ret;
+	int	value;
+	int	output_length;
+	int	ret;
 
 	value = va_arg(va_ptr, int);
-	len = ft_putnbr_len(value, DECIMAL_BASE);
+	output_length = ft_putnbr_len(value, DECIMAL_BASE);
 	ret = 0;
-	if (flags->left_align == ON)
-	{
-		ret += print_zero(flags, len);
+	if (flags->left_align == OFF && output_length < flags->width)
+		ret += print_blank(flags, output_length);
+	ret += print_zero(flags, output_length);
+	if (!(flags->precision == ON && flags->width_p == 0 && value == 0))
 		ret += ft_putnbr_base(value, DECIMAL_BASE);
-		ret += print_blank(flags, len);
-	}
-	else
-	{
-		ret += print_blank(flags, len);
-		ret += print_zero(flags, len);
-		ret += ft_putnbr_base(value, DECIMAL_BASE);
-	}
+	if (flags->left_align == ON && output_length < flags->width)
+		ret += print_blank(flags, output_length);
 	return (ret);
 }
 
-int process_xp(va_list va_ptr, t_word_flags *flags, const char *base)
+int	process_xp(va_list va_ptr, t_word_flags *flags, const char *base)
 {
-	unsigned long long	value;
 	int					len;
 	int					ret;
 	int					is_pointer;
+	unsigned long long	value;
 
 	is_pointer = flags->type == 'p';
 	ret = 0;
 	value = va_arg(va_ptr, unsigned long long);
-	len = ft_putnbr_len(value, base) + (is_pointer ? 2 : 0);
-	if (flags->left_align)
-	{
-		if (is_pointer)
-			ret = ft_putstr("0x");
-		ret += ft_putnbr_base(value, base);
+	len = ft_putnbr_len(value, base);
+	if (is_pointer)
+		len += 2;
+	if (flags->left_align == OFF)
 		ret += print_blank(flags, len);
-	}
-	else
-	{
+	if (is_pointer)
+		ret = ft_putstr("0x");
+	ret += ft_putnbr_base(value, base);
+	if (flags->left_align == ON)
 		ret += print_blank(flags, len);
-		if (is_pointer)
-			ret = ft_putstr("0x");
-		ret += ft_putnbr_base(value, base);
-	}
 	return (ret);
 }
 
-int process_u(va_list va_ptr, t_word_flags *flags, const char *base)
+int	process_u(va_list va_ptr, t_word_flags *flags, const char *base)
 {
 	unsigned int	value;
 	int				len;
@@ -90,7 +80,7 @@ int process_u(va_list va_ptr, t_word_flags *flags, const char *base)
 	return (ret);
 }
 
-int process_s(va_list va_ptr, t_word_flags *flags)
+int	process_s(va_list va_ptr, t_word_flags *flags)
 {
 	char	*value;
 	int		len;
@@ -99,24 +89,23 @@ int process_s(va_list va_ptr, t_word_flags *flags)
 
 	ret = 0;
 	value = va_arg(va_ptr, char *);
-	len = value == NULL ? ft_strlen(NULL_STR) : ft_strlen(value);
 	i = 0;
-	if (flags->left_align)
-	{
-		ret += print_zero(flags, len);
-		ret += (value == NULL ? ft_putstr(NULL_STR) : ft_putstr(value));
-		ret += print_blank(flags, len);
-	}
+	if (value == NULL)
+		len = ft_strlen(NULL_STR);
 	else
-	{
+		len = ft_strlen(value);
+	if (flags->left_align == OFF)
 		ret += print_blank(flags, len);
-		ret += print_zero(flags, len);
-		ret += (value == NULL ? ft_putstr(NULL_STR) : ft_putstr(value));
-	}
+	if (value == NULL)
+		ret += ft_putstr(NULL_STR);
+	else
+		ret += ft_putstr(value);
+	if (flags->left_align)
+		ret += print_blank(flags, len);
 	return (ret);
 }
 
-int process_c(va_list va_ptr, t_word_flags *flags)
+int	process_c(va_list va_ptr, t_word_flags *flags)
 {
 	int				value;
 	int				len;

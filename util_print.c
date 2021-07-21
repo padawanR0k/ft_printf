@@ -6,7 +6,7 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 15:18:38 by yurlee            #+#    #+#             */
-/*   Updated: 2021/06/05 17:43:03 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/21 15:11:25 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int	ft_putchar(const char chr)
 
 int	ft_putstr(const char *chr)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(chr);
 	return (write(STDOUT_FILENO, chr, len));
 }
 
-int ft_putnbr_len(long long n, const char *base)
+int	ft_putnbr_len(long long n, const char *base)
 {
 	int					len;
 	unsigned long long	base_len;
@@ -33,11 +33,12 @@ int ft_putnbr_len(long long n, const char *base)
 
 	len = 0;
 	base_len = (unsigned long long)ft_strlen(base);
-
 	if (n < 0)
 		len += 1;
-	nbr = n < 0 ? -n : n;
-
+	if (n < 0)
+		nbr = -n;
+	else
+		nbr = n;
 	while (nbr > base_len - 1)
 	{
 		nbr = nbr / base_len;
@@ -47,12 +48,12 @@ int ft_putnbr_len(long long n, const char *base)
 	return (len);
 }
 
-int printnbr(unsigned long long n, const char *base,
+int	printnbr(unsigned long long n, const char *base,
 	unsigned long long base_len)
 {
 	unsigned long long	div;
 	unsigned long long	mod;
-	int				 	len;
+	int					len;
 
 	len = 0;
 	if (n > base_len - 1)
@@ -77,7 +78,10 @@ int	ft_putnbr_base(long long n, const char *base)
 
 	base_len = ft_strlen(base);
 	len = 0;
-	nbr = n < 0 ? -n : n;
+	if (n < 0)
+		nbr = -n;
+	else
+		nbr = n;
 	if (n < 0)
 		len += ft_putchar('-');
 	len += printnbr(nbr, base, (unsigned long long)base_len);

@@ -1,8 +1,8 @@
-int is_format_specifier(char c)
+int	is_format_specifier(char c)
 {
 	if (c == 'c' || c == 's' || c == 'p'
-	|| c == 'd' || c == 'i' || c == 'u'
-	|| c == 'x' || c == 'X')
+		|| c == 'd' || c == 'i' || c == 'u'
+		|| c == 'x' || c == 'X')
 	{
 		return (1);
 	}
@@ -10,10 +10,10 @@ int is_format_specifier(char c)
 		return (0);
 }
 
-int get_formats_cnt(char *str)
+int	get_formats_cnt(char *str)
 {
-	int cnt;
-	int is_format_set;
+	int	cnt;
+	int	is_format_set;
 
 	cnt = 0;
 	while (*(str + 1))

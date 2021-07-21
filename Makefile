@@ -1,6 +1,12 @@
 CFLAGS =	-Wall -Wextra -Werror
 SRCS =	\
-	ft_printf.c
+	ft_printf.c \
+	counter.c \
+	process.c \
+	util_option.c \
+	util_print.c \
+	util_print2.c \
+
 LIBFT = libft
 NAME =	libftprintf.a
 
@@ -12,9 +18,9 @@ all :	$(NAME)
 	gcc $(CFLAGS) -c $< -o $@
 
 $(NAME):	$(OBJS)
-	make all -C $(LIBFT)/
+	make -C ./$(LIBFT)
 	cp $(LIBFT)/libft.a $(NAME)
-	ar -cr $@ $^
+	ar rc $(NAME) $(OBJS)
 
 clean :
 	rm -f $(OBJS)

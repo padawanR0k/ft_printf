@@ -6,12 +6,12 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 13:32:42 by yurlee            #+#    #+#             */
-/*   Updated: 2021/06/12 17:42:55 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/21 18:00:57 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINT_H
-# define FT_PRINT_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdarg.h>
 # include <unistd.h>
@@ -30,7 +30,7 @@
 # define DECIMAL_BASE "0123456789"
 # define NULL_STR "(null)"
 
-typedef struct	s_word_flags
+typedef struct s_word_flags
 {
 	char		type;
 	int			width;
@@ -56,7 +56,7 @@ int				process_u(va_list va_ptr,
 					t_word_flags *flags, const char *base);
 int				process_s(va_list va_ptr, t_word_flags *flags);
 int				process_c(va_list va_ptr, t_word_flags *flags);
-int				print_padding(t_word_flags *flags, int len);
 int				print_zero(t_word_flags *flags, int len);
 int				print_blank(t_word_flags *flags, int len);
+int				is_format_specifier(char c);
 #endif

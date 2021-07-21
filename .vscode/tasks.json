@@ -10,7 +10,10 @@
                 "${fileDirname}/main.c",
                 "${fileDirname}/libftprintf.a",
                 "${fileDirname}/util_print.c",
+                "${fileDirname}/util_print2.c",
                 "${fileDirname}/util_option.c",
+                "${fileDirname}/process.c",
+                "${fileDirname}/counter.c",
                 "${fileDirname}/ft_printf.h",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
