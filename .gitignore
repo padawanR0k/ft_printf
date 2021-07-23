@@ -2,3 +2,6 @@
 .vscode/
 *.o
 */**/*.o
+*.a
+printf_lover_v2/
+pft/

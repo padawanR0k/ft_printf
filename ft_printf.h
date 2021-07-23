@@ -6,7 +6,7 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 13:32:42 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/21 18:00:57 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/23 17:46:49 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_word_flags
 	short		left_align;
 	short		blank;
 	short		precision;
+	void		*value;
 }				t_word_flags;
 
 int				ft_printf(const char *format, ...);
@@ -59,4 +60,5 @@ int				process_c(va_list va_ptr, t_word_flags *flags);
 int				print_zero(t_word_flags *flags, int len);
 int				print_blank(t_word_flags *flags, int len);
 int				is_format_specifier(char c);
+int				print_repeat(int diff, char c);
 #endif

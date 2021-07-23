@@ -5,7 +5,8 @@ SRCS =	\
 	process.c \
 	util_option.c \
 	util_print.c \
-	util_print2.c \
+	util_print_blank.c \
+	util_print3.c \
 
 LIBFT = libft
 NAME =	libftprintf.a

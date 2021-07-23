@@ -6,7 +6,7 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 15:18:38 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/21 15:11:25 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/23 16:49:06 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,6 @@ int	ft_putnbr_base(long long n, const char *base)
 		nbr = -n;
 	else
 		nbr = n;
-	if (n < 0)
-		len += ft_putchar('-');
 	len += printnbr(nbr, base, (unsigned long long)base_len);
 	return (len);
 }
