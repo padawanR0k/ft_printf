@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_print_blank.c                                      :+:      :+:    :+:   */
+/*   util_print_blank.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/12 15:04:03 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/23 18:00:17 by yurlee           ###   ########.fr       */
+/*   Created: 2021/07/24 11:45:22 by yurlee            #+#    #+#             */
+/*   Updated: 2021/07/24 17:13:21 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	print_repeat(int diff, char c)
 	return (ret);
 }
 
-int	print_blank_d(t_word_flags *flags, int len)
+int	print_blank_diuxX(t_word_flags *flags, int len)
 {
 	int	ret;
 	int	padding;
@@ -38,17 +38,15 @@ int	print_blank_d(t_word_flags *flags, int len)
 	max = 0;
 	if (flags->precision && flags->width)
 	{
+		if (flags->width_p == 0 && *(int *)flags->value == 0)
+			len = 0;
 		if (len > flags->width_p)
 			padding = flags->width - len;
+		else if (flags->width_p > len)
+			padding = flags->width - flags->width_p;
 		else
-		{
-			if (flags->width_p > len)
-				max = flags->width_p;
-			else
-				max = len;
-			padding = flags->width - max;
-		}
-		if (*(int *)(flags->value) < 0)
+			padding = flags->width - len;
+		if (flags->width_p >= len && *(int *)(flags->value) < 0)
 			padding -= 1;
 	}
 	else if (flags->width)
@@ -81,8 +79,10 @@ int	print_blank(t_word_flags *flags, int len)
 	blank = flags->width - len;
 	if (flags->precision)
 	{
-		if (flags->type == 'd')
-			ret += print_blank_d(flags, len);
+		if (flags->type == 'd' || flags->type == 'i'
+			|| flags->type == 'u' || flags->type == 'x'
+			|| flags->type == 'X')
+			ret += print_blank_diuxX(flags, len);
 		else if (flags->type == 's')
 			ret += print_blank_s(flags, len);
 		else if (flags->width && blank > 0)

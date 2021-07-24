@@ -6,7 +6,7 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 13:32:44 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/21 18:25:54 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/24 17:14:46 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,18 @@ int	process_by_format(const char *str, va_list va_ptr, t_word_flags *flags)
 	else if (*str == 's')
 		ret = process_s(va_ptr, flags);
 	else if (*str == 'd' || *str == 'i')
-		ret = process_id(va_ptr, flags);
+		ret = process_id(va_ptr, flags, DECIMAL_BASE);
 	else if (*str == 'u')
 		ret = process_u(va_ptr, flags, DECIMAL_BASE);
-	else if (*str == 'x' || *str == 'X' || *str == 'p')
+	else if (*str == 'p')
+		ret = process_p(va_ptr, flags, HEXA_BASE_L);
+	else if (*str == 'x' || *str == 'X')
 	{
 		if (*str == 'X')
 			base = HEXA_BASE_U;
 		else
 			base = HEXA_BASE_L;
-		ret = process_xp(va_ptr, flags, base);
+		ret = process_x(va_ptr, flags, base);
 	}
 	return (ret);
 }
@@ -64,6 +66,7 @@ int	core(const char *str, va_list va_ptr)
 		{
 			flags.specifier = ON;
 			str++;
+			init_flags(&flags);
 			check_flag_option(&str, &flags);
 			ret += process_by_format(str, va_ptr, &flags);
 		}

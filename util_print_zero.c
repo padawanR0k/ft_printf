@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_print3.c                                      :+:      :+:    :+:   */
+/*   util_print_zero.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/23 17:34:17 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/23 17:58:51 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/24 13:17:23 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ int	print_zero(t_word_flags *flags, int len)
 	ret = 0;
 	if (flags->precision)
 	{
-		if (flags->type == 'd')
+		if (flags->type == 'd' || flags->type == 'i'
+			|| flags->type == 'u')
 			ret = print_zero_d(flags, len);
 		else
 		{
