@@ -6,7 +6,7 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 17:17:48 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/26 18:07:10 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/26 19:04:30 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	process_u(va_list va_ptr, t_word_flags *flags, const char *base)
 	ret += print_zero(flags, len);
 	if (!(flags->precision == ON && flags->width_p == 0 && value == 0))
 		ret += ft_putnbr_base(value, base);
-	if (flags->left_align == ON)
+	if (flags->left_align == ON && len <= flags->width)
 		ret += print_blank(flags, len);
 	return (ret);
 }

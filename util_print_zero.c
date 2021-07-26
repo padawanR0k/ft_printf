@@ -6,13 +6,13 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 16:59:33 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/26 16:59:38 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/26 19:15:05 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_zero_diu(t_word_flags *flags, int len)
+int	print_zero_di(t_word_flags *flags, int len)
 {
 	int	ret;
 	int	padding;
@@ -44,9 +44,8 @@ int	print_zero(t_word_flags *flags, int len)
 	ret = 0;
 	if (flags->precision)
 	{
-		if (flags->type == 'd' || flags->type == 'i'
-			|| flags->type == 'u')
-			ret = print_zero_diu(flags, len);
+		if (flags->type == 'd' || flags->type == 'i')
+			ret = print_zero_di(flags, len);
 		else if (flags->type == '%')
 			ret = print_zero_percent(flags, len);
 		else
