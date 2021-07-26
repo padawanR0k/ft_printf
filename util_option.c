@@ -6,7 +6,7 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 15:18:36 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/26 18:04:45 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/26 18:31:59 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,12 @@ int	check_flag_option(const char **str, t_word_flags *flags)
 		}
 	}
 	return (0);
+}
+
+int	is_format_specifier(char c)
+{
+	if (ft_strchr(FORMAT_SPECIFIER, c))
+		return (1);
+	else
+		return (0);
 }

@@ -1,7 +1,6 @@
 CFLAGS =	-Wall -Wextra -Werror
 SRCS =	\
 	ft_printf.c \
-	counter.c \
 	process.c \
 	process2.c \
 	util_option.c \
@@ -31,8 +30,5 @@ fclean :	clean
 	rm -f $(NAME)
 
 re :	fclean all
-
-bonus :
-	make all
 
 .PHONY:	all clean fclean re
