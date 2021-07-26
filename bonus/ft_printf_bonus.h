@@ -6,7 +6,7 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 13:32:42 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/26 21:09:31 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/26 21:19:56 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,7 @@
 
 # define ON 1
 # define OFF 0
-# define FLAG_LEFT_ALIGN 10
-# define FLAG_BLANK 20
-# define FLAG_PRECISON 30
 # define FORMAT_SPECIFIER "cspdiuxX%"
-# define FLAG_OPTION "-.*\0"
 # define HEXA_BASE_L "0123456789abcdef"
 # define HEXA_BASE_U "0123456789ABCDEF"
 # define DECIMAL_BASE "0123456789"
