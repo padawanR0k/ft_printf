@@ -6,7 +6,7 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 11:45:22 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/24 17:13:21 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/25 20:15:19 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,20 @@ int	print_blank_s(t_word_flags *flags, int len)
 	return (ret);
 }
 
+int	print_blank_percent(t_word_flags *flags, int len)
+{
+	int	ret;
+	int	blank;
+
+	ret = 0;
+	blank = 0;
+	if (flags->fill_zero || flags->width == 0)
+		return (ret);
+	blank = flags->width - len;
+	ret += print_repeat(blank, ' ');
+	return (ret);
+}
+
 int	print_blank(t_word_flags *flags, int len)
 {
 	int	blank;
@@ -85,6 +99,8 @@ int	print_blank(t_word_flags *flags, int len)
 			ret += print_blank_diuxX(flags, len);
 		else if (flags->type == 's')
 			ret += print_blank_s(flags, len);
+		else if (flags->type == '%')
+			ret += print_blank_percent(flags, len);
 		else if (flags->width && blank > 0)
 			ret += print_repeat(blank, ' ');
 	}

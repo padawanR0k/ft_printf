@@ -6,7 +6,7 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 12:43:43 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/24 15:03:32 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/25 20:19:20 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,26 @@ int	process_p(va_list va_ptr, t_word_flags *flags, const char *base)
 		ret += ft_putnbr_base((long long)value, base);
 	if (flags->left_align == ON)
 		ret += print_blank(flags, len);
+	return (ret);
+}
+
+int	process_percent(va_list va_ptr, t_word_flags *flags)
+{
+	char			value;
+	int				i;
+	int				ret;
+
+	ret = 0;
+	i = 0;
+	value = va_arg(va_ptr, int);
+	value = '%';
+	flags->value = &value;
+	if (flags->left_align == OFF)
+		ret += print_blank(flags, 1);
+	if (flags->fill_zero == ON)
+		ret += print_zero(flags, 1);
+	ret += ft_putchar(value);
+	if (flags->left_align == ON)
+		ret += print_blank(flags, 1);
 	return (ret);
 }

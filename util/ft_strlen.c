@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/06 14:52:05 by gojung            #+#    #+#             */
-/*   Updated: 2021/07/19 16:29:17 by yurlee           ###   ########.fr       */
+/*   Created: 2021/03/03 17:44:55 by yurlee            #+#    #+#             */
+/*   Updated: 2021/07/26 18:12:46 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include <unistd.h>
 
-# include <unistd.h>
-# include <string.h>
-# include <stdlib.h>
-
-typedef struct s_list
+size_t	ft_strlen(const char *s)
 {
-	void			*content;
-	struct s_list	*next;
-}					t_list;
+	int	size;
 
-size_t	ft_strlen(const char *str);
-int		ft_isdigit(int c);
-char	*ft_strchr(const char *s, int c);
-#endif
+	size = 0;
+	while (s[size])
+		size++;
+	return (size);
+}

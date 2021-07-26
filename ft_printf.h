@@ -6,7 +6,7 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 13:32:42 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/24 17:14:35 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/26 18:13:58 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <stdarg.h>
 # include <unistd.h>
-# include <stdio.h>
-# include "./libft/libft.h"
 
 # define ON 1
 # define OFF 0
@@ -57,10 +55,14 @@ int				process_u(va_list va_ptr,
 					t_word_flags *flags, const char *base);
 int				process_s(va_list va_ptr, t_word_flags *flags);
 int				process_c(va_list va_ptr, t_word_flags *flags);
+int				process_percent(va_list va_ptr, t_word_flags *flags);
 int				process_p(va_list va_ptr,
 					t_word_flags *flags, const char *base);
 int				print_zero(t_word_flags *flags, int len);
 int				print_blank(t_word_flags *flags, int len);
 int				is_format_specifier(char c);
 int				print_repeat(int diff, char c);
+int				ft_isdigit(int c);
+char			*ft_strchr(const char *s, int c);
+size_t			ft_strlen(const char *s);
 #endif

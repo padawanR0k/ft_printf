@@ -6,7 +6,7 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 13:32:44 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/24 17:14:46 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/26 17:01:47 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 int	process_by_format(const char *str, va_list va_ptr, t_word_flags *flags)
 {
 	int		ret;
-	char	*base;
 
 	ret = 0;
 	if (is_format_specifier(*str))
 		flags->type = *str;
-	if (*str == 'c')
+	if (*str == '%')
+		ret = process_percent(va_ptr, flags);
+	else if (*str == 'c')
 		ret = process_c(va_ptr, flags);
 	else if (*str == 's')
 		ret = process_s(va_ptr, flags);
@@ -30,14 +31,10 @@ int	process_by_format(const char *str, va_list va_ptr, t_word_flags *flags)
 		ret = process_u(va_ptr, flags, DECIMAL_BASE);
 	else if (*str == 'p')
 		ret = process_p(va_ptr, flags, HEXA_BASE_L);
-	else if (*str == 'x' || *str == 'X')
-	{
-		if (*str == 'X')
-			base = HEXA_BASE_U;
-		else
-			base = HEXA_BASE_L;
-		ret = process_x(va_ptr, flags, base);
-	}
+	else if (*str == 'x')
+		ret = process_x(va_ptr, flags, HEXA_BASE_L);
+	else if (*str == 'X')
+		ret = process_x(va_ptr, flags, HEXA_BASE_U);
 	return (ret);
 }
 

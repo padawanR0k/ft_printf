@@ -6,13 +6,13 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 15:18:36 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/21 18:21:28 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/26 18:04:45 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	is_option(char c)
+int	is_flag(char c)
 {
 	int		valid;
 	char	*options;
@@ -38,7 +38,7 @@ void	get_precision(const char **str, t_word_flags *flags)
 
 int	check_flag_option(const char **str, t_word_flags *flags)
 {
-	while (is_option(**str))
+	while (is_flag(**str))
 	{
 		if (**str == '-')
 		{

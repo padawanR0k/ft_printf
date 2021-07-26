@@ -8,8 +8,10 @@ SRCS =	\
 	util_print.c \
 	util_print_blank.c \
 	util_print_zero.c \
+	./util/ft_isdigit.c \
+	./util/ft_strchr.c \
+	./util/ft_strlen.c \
 
-LIBFT = libft
 NAME =	libftprintf.a
 
 OBJS =	$(SRCS:.c=.o)
@@ -20,8 +22,6 @@ all :	$(NAME)
 	gcc $(CFLAGS) -c $< -o $@
 
 $(NAME):	$(OBJS)
-	make -C ./$(LIBFT)
-	cp $(LIBFT)/libft.a $(NAME)
 	ar rc $(NAME) $(OBJS)
 
 clean :
