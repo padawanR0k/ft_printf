@@ -6,7 +6,7 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 13:32:42 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/26 21:19:47 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/27 11:09:22 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int				process_u(va_list va_ptr,
 					t_word_flags *flags, const char *base);
 int				process_s(va_list va_ptr, t_word_flags *flags);
 int				process_c(va_list va_ptr, t_word_flags *flags);
-int				process_percent(va_list va_ptr, t_word_flags *flags);
+int				process_percent(t_word_flags *flags);
 int				process_p(va_list va_ptr,
 					t_word_flags *flags, const char *base);
 int				print_zero(t_word_flags *flags, int len);

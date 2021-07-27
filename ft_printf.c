@@ -6,7 +6,7 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 13:32:44 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/26 18:55:16 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/27 10:56:29 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	process_by_format(const char *str, va_list va_ptr, t_word_flags *flags)
 	if (is_format_specifier(*str))
 		flags->type = *str;
 	if (*str == '%')
-		ret = process_percent(va_ptr, flags);
+		ret = process_percent(flags);
 	else if (*str == 'c')
 		ret = process_c(va_ptr, flags);
 	else if (*str == 's')

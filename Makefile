@@ -11,23 +11,9 @@ SRCS =	\
 	./util/ft_strchr.c \
 	./util/ft_strlen.c \
 
-BONUS_SRCS =	\
-	./bonus/ft_printf_bonus.c \
-	./bonus/process_bonus.c \
-	./bonus/process2_bonus.c \
-	./bonus/util_option_bonus.c \
-	./bonus/util_print_bonus.c \
-	./bonus/util_print_blank_bonus.c \
-	./bonus/util_print_zero_bonus.c \
-	./bonus/util/ft_isdigit_bonus.c \
-	./bonus/util/ft_strchr_bonus.c \
-	./bonus/util/ft_strlen_bonus.c \
-
-
 NAME =	libftprintf.a
 
 OBJS =	$(SRCS:.c=.o)
-BONUS_OBJS =	$(BONUS_SRCS:.c=.o)
 
 all :	$(NAME)
 
@@ -38,13 +24,12 @@ $(NAME):	$(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 clean :
-	rm -f $(OBJS) $(BONUS_OBJS)
+	rm -f $(OBJS)
 
 fclean :	clean
 	rm -f $(NAME)
 
-bonus :	$(BONUS_OBJS)
-	ar rcs $(NAME) $(BONUS_OBJS)
+bonus :	$(NAME)
 
 re :	fclean all
 
