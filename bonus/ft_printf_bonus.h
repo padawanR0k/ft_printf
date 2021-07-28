@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 13:32:42 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/26 21:19:56 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/28 15:54:55 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_word_flags
 	int			width;
 	int			width_p;
 	short		fill_zero;
-	short		specifier;
 	short		left_align;
 	short		blank;
 	short		precision;
@@ -41,7 +40,7 @@ int				ft_printf(const char *format, ...);
 int				ft_putchar(const char str);
 int				ft_putstr(const char *chr);
 int				ft_putnbr_base(long long n, const char *base);
-int				check_flag_option(const char **str, t_word_flags *flags);
+char			*check_flag_option(char *str, t_word_flags *flags);
 int				ft_putnbr_len(long long n, const char *base);
 int				process_id(va_list va_ptr,
 					t_word_flags *flags, const char *base);
@@ -51,7 +50,7 @@ int				process_u(va_list va_ptr,
 					t_word_flags *flags, const char *base);
 int				process_s(va_list va_ptr, t_word_flags *flags);
 int				process_c(va_list va_ptr, t_word_flags *flags);
-int				process_percent(va_list va_ptr, t_word_flags *flags);
+int				process_percent(t_word_flags *flags);
 int				process_p(va_list va_ptr,
 					t_word_flags *flags, const char *base);
 int				print_zero(t_word_flags *flags, int len);
@@ -61,4 +60,5 @@ int				print_repeat(int diff, char c);
 int				ft_isdigit(int c);
 char			*ft_strchr(const char *s, int c);
 size_t			ft_strlen(const char *s);
+int				is_flag(char c);
 #endif

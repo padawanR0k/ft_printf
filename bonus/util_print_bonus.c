@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_print_bonus.c                                 :+:      :+:    :+:   */
+/*   util_print.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 15:18:38 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/26 21:09:59 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/28 15:55:27 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,23 @@ int	ft_putstr(const char *chr)
 
 int	ft_putnbr_len(long long n, const char *base)
 {
-	int					len;
-	unsigned long long	base_len;
-	unsigned long long	nbr;
+	int			len;
+	long long	base_len;
+	long long	nbr;
 
 	len = 0;
-	base_len = (unsigned long long)ft_strlen(base);
-	if (n < 0)
-		len += 1;
+	if (n == 0)
+		len++;
+	base_len = (long long)ft_strlen(base);
 	if (n < 0)
 		nbr = -n;
 	else
 		nbr = n;
-	while (nbr > base_len - 1)
+	while (nbr != 0)
 	{
-		nbr = nbr / base_len;
-		len += 1;
+		nbr /= base_len;
+		len++;
 	}
-	len += 1;
 	return (len);
 }
 

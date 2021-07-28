@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   process2.c                                         :+:      :+:    :+:   */
+/*   process2_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 12:43:43 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/26 21:09:37 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/28 15:55:17 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	process_p(va_list va_ptr, t_word_flags *flags, const char *base)
 	return (ret);
 }
 
-int	process_percent(va_list va_ptr, t_word_flags *flags)
+int	process_percent(t_word_flags *flags)
 {
 	char			value;
 	int				i;
@@ -44,14 +44,13 @@ int	process_percent(va_list va_ptr, t_word_flags *flags)
 
 	ret = 0;
 	i = 0;
-	value = va_arg(va_ptr, int);
 	value = '%';
 	flags->value = &value;
 	if (flags->left_align == OFF)
 		ret += print_blank(flags, 1);
 	if (flags->fill_zero == ON)
 		ret += print_zero(flags, 1);
-	ret += ft_putchar(value);
+	ret += ft_putchar('%');
 	if (flags->left_align == ON)
 		ret += print_blank(flags, 1);
 	return (ret);
