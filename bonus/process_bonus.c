@@ -6,7 +6,7 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 17:17:48 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/26 21:09:34 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/28 15:55:12 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ int	process_id(va_list va_ptr, t_word_flags *flags, const char *base)
 	flags->value = &value;
 	len = ft_putnbr_len(value, base);
 	ret = 0;
+	if (value < 0)
+		len += 1;
 	if (flags->left_align == OFF && len <= flags->width)
 		ret += print_blank(flags, len);
 	if (value < 0)
-		ft_putchar('-');
+		ret += ft_putchar('-');
 	ret += print_zero(flags, len);
 	if (!(flags->precision == ON && flags->width_p == 0 && value == 0))
 		ret += ft_putnbr_base(value, base);
@@ -38,10 +40,10 @@ int	process_x(va_list va_ptr, t_word_flags *flags, const char *base)
 {
 	int					len;
 	int					ret;
-	unsigned long long	value;
+	unsigned int		value;
 
 	ret = 0;
-	value = va_arg(va_ptr, unsigned long long);
+	value = va_arg(va_ptr, unsigned int);
 	flags->value = &value;
 	len = ft_putnbr_len(value, base);
 	if (flags->left_align == OFF)
@@ -107,7 +109,7 @@ int	process_s(va_list va_ptr, t_word_flags *flags)
 
 int	process_c(va_list va_ptr, t_word_flags *flags)
 {
-	int				value;
+	char			value;
 	int				len;
 	int				i;
 	int				ret;
@@ -115,7 +117,7 @@ int	process_c(va_list va_ptr, t_word_flags *flags)
 	len = 1;
 	ret = 0;
 	i = 0;
-	value = va_arg(va_ptr, int);
+	value = (unsigned char)va_arg(va_ptr, int);
 	flags->value = &value;
 	if (flags->left_align == OFF)
 		ret += print_blank(flags, len);

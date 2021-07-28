@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util_option_bonus.c                                :+:      :+:    :+:   */
+/*   util_option.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/05 15:18:36 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/26 21:09:46 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/28 15:55:21 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,45 +22,46 @@ int	is_flag(char c)
 	return (valid);
 }
 
-void	get_precision(const char **str, t_word_flags *flags)
+char	*get_precision(char *str, t_word_flags *flags)
 {
 	if (flags->precision == OFF)
 	{
 		flags->precision = ON;
-		(*str)++;
-		while (ft_isdigit(**str))
+		str++;
+		while (ft_isdigit(*str))
 		{
-			flags->width_p = (flags->width_p * 10) + (**str - '0');
-			(*str)++;
+			flags->width_p = (flags->width_p * 10) + (*str - '0');
+			str++;
 		}
 	}
+	return (str);
 }
 
-int	check_flag_option(const char **str, t_word_flags *flags)
+char	*check_flag_option(char *str, t_word_flags *flags)
 {
-	while (is_flag(**str))
+	while (is_flag(*str))
 	{
-		if (**str == '-')
+		if (*str == '-')
 		{
 			if (flags->left_align == OFF)
 				flags->left_align = ON;
-			(*str)++;
+			str++;
 		}
-		else if (**str == '0')
+		else if (*str == '0')
 		{
 			if (flags->left_align == OFF && flags->precision == OFF)
 				flags->fill_zero = ON;
-			(*str)++;
+			str++;
 		}
-		else if (**str == '.')
-			get_precision(str, flags);
-		while (ft_isdigit(**str))
+		else if (*str == '.')
+			str = get_precision(str, flags);
+		while (ft_isdigit(*str))
 		{
-			flags->width = (flags->width * 10) + (**str - '0');
-			(*str)++;
+			flags->width = (flags->width * 10) + (*str - '0');
+			str++;
 		}
 	}
-	return (0);
+	return (str);
 }
 
 int	is_format_specifier(char c)

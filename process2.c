@@ -6,7 +6,7 @@
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 12:43:43 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/27 10:56:29 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/28 13:28:29 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	process_percent(t_word_flags *flags)
 		ret += print_blank(flags, 1);
 	if (flags->fill_zero == ON)
 		ret += print_zero(flags, 1);
-	ret += ft_putchar(value);
+	ret += ft_putchar('%');
 	if (flags->left_align == ON)
 		ret += print_blank(flags, 1);
 	return (ret);

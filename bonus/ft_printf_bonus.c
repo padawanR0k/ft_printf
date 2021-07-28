@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yurlee <yurlee@student.42.kr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/28 13:32:44 by yurlee            #+#    #+#             */
-/*   Updated: 2021/07/26 21:11:06 by yurlee           ###   ########.fr       */
+/*   Updated: 2021/07/28 15:54:49 by yurlee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf_bonus.h"
 
-int	process_by_format(const char *str, va_list va_ptr, t_word_flags *flags)
+int	process_by_format(char *str, va_list va_ptr, t_word_flags *flags)
 {
 	int		ret;
 
@@ -20,7 +20,7 @@ int	process_by_format(const char *str, va_list va_ptr, t_word_flags *flags)
 	if (is_format_specifier(*str))
 		flags->type = *str;
 	if (*str == '%')
-		ret = process_percent(va_ptr, flags);
+		ret = process_percent(flags);
 	else if (*str == 'c')
 		ret = process_c(va_ptr, flags);
 	else if (*str == 's')
@@ -43,33 +43,35 @@ void	init_flags(t_word_flags *flags)
 	flags->blank = OFF;
 	flags->left_align = OFF;
 	flags->precision = OFF;
-	flags->specifier = OFF;
 	flags->width = 0;
 	flags->width_p = 0;
 	flags->fill_zero = OFF;
 	flags->type = OFF;
+	flags->value = NULL;
 }
 
 int	core(const char *str, va_list va_ptr)
 {
 	int				ret;
 	t_word_flags	flags;
+	char			*fmt;
 
 	ret = 0;
-	init_flags(&flags);
-	while (*str)
+	fmt = (char *)str;
+	while (*fmt)
 	{
-		if (*str == '%')
+		if (*fmt == '%')
 		{
-			flags.specifier = ON;
-			str++;
 			init_flags(&flags);
-			check_flag_option(&str, &flags);
-			ret += process_by_format(str, va_ptr, &flags);
+			if (is_flag(*(fmt + 1)) || is_format_specifier(*(fmt + 1)))
+			{
+				fmt = check_flag_option(fmt + 1, &flags);
+				ret += process_by_format(fmt, va_ptr, &flags);
+			}
 		}
 		else
-			ret += ft_putchar(*str);
-		str++;
+			ret += ft_putchar(*fmt);
+		fmt++;
 	}
 	return (ret);
 }
